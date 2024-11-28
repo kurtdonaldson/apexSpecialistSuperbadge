@@ -30,18 +30,8 @@ public with sharing class WarehouseCalloutService implements Queueable, Database
 
             }
 
-            System.debug('Equip Upsert List = ' + equipUpsertList);
-            System.debug('Results= ' + results);
-
-
             if(!equipUpsertList.isEmpty()){
-                try{
                     upsert equipUpsertList Warehouse_SKU__c;
-
-                }catch(DmlException e){
-                    System.debug(e.getMessage());
-                }
-                System.debug('equipUpsertList = ' + equipUpsertList);
             }
 
         }
