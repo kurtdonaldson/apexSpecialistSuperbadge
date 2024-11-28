@@ -18,10 +18,13 @@ public with sharing class MaintenanceRequestHelper {
 
                     //Calculate Case Due Date
                     Date dueDate;
-                    if(triggeredCase.Equipment_Maintenance_Items__r[0].Equipment__r.Maintenance_Cycle__c != NULL){                      
-                        Integer days = Integer.valueOf(triggeredCase.Equipment_Maintenance_Items__r[0].Equipment__r.Maintenance_Cycle__c);
-                        dueDate = Date.today().addDays(days);
+                    if(triggeredCase.Equipment_Maintenance_Items__r.size() > 0){
+                            if(triggeredCase.Equipment_Maintenance_Items__r[0].Equipment__r.Maintenance_Cycle__c != NULL){                      
+                                Integer days = Integer.valueOf(triggeredCase.Equipment_Maintenance_Items__r[0].Equipment__r.Maintenance_Cycle__c);
+                                dueDate = Date.today().addDays(days);
+                            }      
                     }
+
 
                     Case newCase = new Case();
                     newCase.Type = 'Routine Maintenance';
